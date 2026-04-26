@@ -4,7 +4,6 @@ const RED   = "#CC2200";
 const DARK  = "#0D1117";
 const NAVY  = "#111820";
 const WHITE = "#FFFFFF";
-const LIGHT = "#F4F4F2";
 
 // ─── Logo ──────────────────────────────────────────────────────────────────
 const ToltLogo = ({ size = 40 }) => (
