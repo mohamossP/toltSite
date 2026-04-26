@@ -117,11 +117,6 @@ const team = [
   },
 ];
 
-const testimonials = [
-  { quote: "Tölt-AI automated our patient intake and triage workflows. Our clinical staff reclaimed hours every shift — without compromising on compliance.", name: "Dr. A. Hassan",   company: "Director of Digital Health, Regional Hospital Network" },
-  { quote: "The local LLM deployment was a game-changer for us. Sensitive citizen data stays on-premises, and the agents still perform beautifully.",      name: "M. Okonkwo",    company: "Head of IT, Municipal Government Authority" },
-  { quote: "We piloted Tölt-AI across three departments. The training programme made adoption smooth — staff went from sceptical to advocates in two weeks.", name: "Prof. L. Strand", company: "VP Operations, National University" },
-];
 
 // ─── App ───────────────────────────────────────────────────────────────────
 export default function ToltAILanding() {
