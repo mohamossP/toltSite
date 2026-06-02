@@ -48,6 +48,57 @@ const Reveal = ({ children, delay = 0, from = "bottom", style: outerStyle = {}, 
   );
 };
 
+// ─── Contact modal ─────────────────────────────────────────────────────────
+const ContactModal = ({ open, onClose, name, setName, email, setEmail, message, setMessage, sent, onSubmit }) => {
+  if (!open) return null;
+  return (
+    <div onClick={onClose} style={{
+      position: "fixed", inset: 0, zIndex: 200,
+      background: "rgba(0,0,0,0.8)", backdropFilter: "blur(6px)",
+      display: "flex", alignItems: "center", justifyContent: "center", padding: 24,
+    }}>
+      <div onClick={e => e.stopPropagation()} style={{
+        background: "#111820", border: "1px solid rgba(255,255,255,0.08)",
+        padding: "48px 40px", maxWidth: 520, width: "100%", position: "relative",
+        animation: "fadeUp 0.35s ease both",
+      }}>
+        <button onClick={onClose} style={{
+          position: "absolute", top: 16, right: 20,
+          fontSize: 22, color: "rgba(255,255,255,0.35)", cursor: "pointer", lineHeight: 1,
+        }}>×</button>
+        <p style={{ fontSize: 10, letterSpacing: "0.24em", color: "#CC2200", textTransform: "uppercase", marginBottom: 12, fontWeight: 500 }}>
+          Work With Us
+        </p>
+        <h3 style={{ fontFamily: "'Heebo', sans-serif", fontSize: "clamp(22px, 3vw, 32px)", fontWeight: 100, textTransform: "uppercase", color: "#fff", marginBottom: 32, lineHeight: 1.15 }}>
+          Ready to automate<br />with confidence?
+        </h3>
+        {sent ? (
+          <div style={{ padding: "28px 32px", border: "1px solid #CC2200", background: "rgba(204,34,0,0.07)" }}>
+            <p style={{ fontSize: 15, color: "#CC2200", marginBottom: 8, fontWeight: 400 }}>✓ Email client opened.</p>
+            <p style={{ fontSize: 13, color: "rgba(255,255,255,0.4)", fontWeight: 300 }}>We look forward to hearing from you.</p>
+          </div>
+        ) : (
+          <div style={{ display: "flex", flexDirection: "column", gap: 10 }}>
+            <div style={{ display: "flex", gap: 10, flexWrap: "wrap" }}>
+              <input className="input-field" style={{ flex: "1 1 180px" }} type="text"
+                placeholder="Your name" value={name} onChange={e => setName(e.target.value)} />
+              <input className="input-field" style={{ flex: "1 1 180px" }} type="email"
+                placeholder="your@email.com" value={email} onChange={e => setEmail(e.target.value)} />
+            </div>
+            <textarea className="input-field" style={{ resize: "vertical", minHeight: 110, lineHeight: 1.75 }}
+              placeholder="Tell us about your organisation and what you're looking to automate…"
+              value={message} onChange={e => setMessage(e.target.value)}
+              onKeyDown={e => e.key === "Enter" && e.ctrlKey && onSubmit()} />
+            <div style={{ marginTop: 4 }}>
+              <button className="btn-red" onClick={onSubmit}>Get in Touch →</button>
+            </div>
+          </div>
+        )}
+      </div>
+    </div>
+  );
+};
+
 // ─── Scroll indicator ──────────────────────────────────────────────────────
 const SECTIONS = ["hero", "whatwedo", "sectors", "solutions", "why", "team", "contact"];
 
@@ -122,6 +173,7 @@ const team = [
 export default function ToltAILanding() {
   const [scrolled,       setScrolled]       = useState(false);
   const [activeSection,  setActiveSection]  = useState(0);
+  const [formOpen,       setFormOpen]       = useState(false);
   const [name,           setName]           = useState("");
   const [email,          setEmail]          = useState("");
   const [message,        setMessage]        = useState("");
@@ -165,6 +217,18 @@ export default function ToltAILanding() {
     <div style={{ background: DARK, color: WHITE, fontFamily: "'Heebo', sans-serif", overflowX: "hidden" }}>
 
       <ScrollIndicator active={activeSection} />
+
+      <ContactModal
+        open={formOpen} onClose={() => setFormOpen(false)}
+        name={name} setName={setName}
+        email={email} setEmail={setEmail}
+        message={message} setMessage={setMessage}
+        sent={sent} onSubmit={handleSubmit}
+      />
+
+      <button className="float-btn btn-red" onClick={() => setFormOpen(true)}>
+        Ready to Automate →
+      </button>
 
       {/* ── Global styles ── */}
       <style>{`
@@ -229,6 +293,15 @@ export default function ToltAILanding() {
         @keyframes fadeUp {
           from { opacity: 0; transform: translateY(28px); }
           to   { opacity: 1; transform: translateY(0); }
+        }
+        @keyframes floatPulse {
+          0%, 100% { box-shadow: 0 4px 24px rgba(204,34,0,0.45); }
+          50%       { box-shadow: 0 4px 36px rgba(204,34,0,0.75); }
+        }
+        .float-btn {
+          position: fixed; bottom: 32px; left: 50%; transform: translateX(-50%);
+          z-index: 150; white-space: nowrap;
+          animation: floatPulse 2.5s ease-in-out infinite;
         }
         @keyframes scrollBounce {
           0%, 100% { transform: translateX(-50%) translateY(0); }
@@ -477,7 +550,7 @@ export default function ToltAILanding() {
       <section id="why" style={{
         minHeight: "100vh", display: "flex", flexDirection: "column", justifyContent: "center",
         padding: "120px clamp(24px, 8vw, 140px)",
-        position: "relative", overflow: "hidden",
+        position: "relative", overflow: "hidden", color: WHITE,
         backgroundImage: `url('https://images.unsplash.com/photo-1504639725590-34d0984388bd?auto=format&fit=crop&w=1920&q=80')`,
         backgroundSize: "cover", backgroundPosition: "center",
       }}>
@@ -486,18 +559,18 @@ export default function ToltAILanding() {
           position: "absolute", left: 0, bottom: 0, width: "50%", height: "50%", pointerEvents: "none",
           background: "radial-gradient(circle at bottom left, rgba(204,34,0,0.1), transparent 60%)",
         }} />
-        <Reveal style={{ textAlign: "center" }}>
+        <div style={{ textAlign: "center", position: "relative" }}>
           <p style={{ fontSize: 10, letterSpacing: "0.24em", color: RED, textTransform: "uppercase", marginBottom: 20, fontWeight: 500 }}>
             Why Tölt-AI
           </p>
           <h2 style={{
             fontFamily: "'Heebo', sans-serif",
             fontSize: "clamp(36px, 5vw, 72px)",
-            fontWeight: 100, textTransform: "uppercase", lineHeight: 1.07, marginBottom: 80,
+            fontWeight: 100, textTransform: "uppercase", lineHeight: 1.07, marginBottom: 80, color: WHITE,
           }}>
             Built different.<br />Delivered differently.
           </h2>
-        </Reveal>
+        </div>
         <div className="diff-grid" style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "4px 60px" }}>
           {differentials.map((d, i) => (
             <Reveal key={d.title} delay={i * 80}>
@@ -570,48 +643,21 @@ export default function ToltAILanding() {
           position: "absolute", inset: 0, pointerEvents: "none",
           background: "radial-gradient(ellipse at 50% 50%, rgba(204,34,0,0.08), transparent 60%)",
         }} />
-        <Reveal style={{ width: "100%", maxWidth: 640 }}>
+        <Reveal style={{ width: "100%", maxWidth: 700, textAlign: "center" }}>
           <p style={{ fontSize: 10, letterSpacing: "0.24em", color: RED, textTransform: "uppercase", marginBottom: 20, fontWeight: 500 }}>
             Work With Us
           </p>
           <h2 style={{
             fontFamily: "'Heebo', sans-serif",
-            fontSize: "clamp(36px, 5vw, 72px)",
-            fontWeight: 100, textTransform: "uppercase", lineHeight: 1.07, marginBottom: 18,
+            fontSize: "clamp(36px, 5vw, 80px)",
+            fontWeight: 100, textTransform: "uppercase", lineHeight: 1.07, marginBottom: 24, color: WHITE,
           }}>
             Ready to automate<br />with confidence?
           </h2>
-          <p style={{ fontSize: 12, fontWeight: 300, color: "rgba(255,255,255,0.8)", marginBottom: 56, lineHeight: 1.8 }}>
+          <p style={{ fontSize: 16, fontWeight: 300, color: WHITE, lineHeight: 1.85 }}>
             Tell us about your organisation and we'll tailor a solution for your sector.
           </p>
         </Reveal>
-
-        {sent ? (
-          <Reveal style={{ width: "100%", maxWidth: 640 }}>
-            <div style={{ padding: "36px 40px", border: `1px solid ${RED}`, background: "rgba(204,34,0,0.07)" }}>
-              <p style={{ fontSize: 15, color: RED, marginBottom: 10, fontWeight: 400 }}>✓ Email client opened.</p>
-              <p style={{ fontSize: 13, color: "rgba(255,255,255,0.4)", fontWeight: 300 }}>We look forward to hearing from you.</p>
-            </div>
-          </Reveal>
-        ) : (
-          <Reveal delay={100} style={{ width: "100%", maxWidth: 640 }}>
-            <div style={{ display: "flex", flexDirection: "column", gap: 10, textAlign: "left" }}>
-              <div style={{ display: "flex", gap: 10, flexWrap: "wrap" }}>
-                <input className="input-field" style={{ flex: "1 1 200px" }} type="text"
-                  placeholder="Your name" value={name} onChange={e => setName(e.target.value)} />
-                <input className="input-field" style={{ flex: "1 1 200px" }} type="email"
-                  placeholder="your@email.com" value={email} onChange={e => setEmail(e.target.value)} />
-              </div>
-              <textarea className="input-field" style={{ resize: "vertical", minHeight: 130, lineHeight: 1.75 }}
-                placeholder="Tell us about your organisation and what you're looking to automate…"
-                value={message} onChange={e => setMessage(e.target.value)}
-                onKeyDown={e => e.key === "Enter" && e.ctrlKey && handleSubmit()} />
-              <div style={{ marginTop: 6, textAlign: "center" }}>
-                <button className="btn-red" onClick={handleSubmit}>Get in Touch →</button>
-              </div>
-            </div>
-          </Reveal>
-        )}
       </section>
 
       {/* ══════════════════════════════════════════════════════
