@@ -279,20 +279,23 @@ export default function ToltAILanding() {
         textAlign: "center",
         padding: "140px clamp(24px, 8vw, 160px) 100px",
         position: "relative", overflow: "hidden",
-        background: `linear-gradient(155deg, #0D1117 0%, #1a0800 55%, #0D1117 100%)`,
+        backgroundImage: `url('https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&w=1920&q=80')`,
+        backgroundSize: "cover", backgroundPosition: "center",
       }}>
+        {/* Dark overlays */}
+        <div style={{ position: "absolute", inset: 0, background: "linear-gradient(155deg, rgba(13,17,23,0.92) 0%, rgba(26,8,0,0.85) 50%, rgba(13,17,23,0.92) 100%)", pointerEvents: "none" }} />
         {/* Subtle grid */}
         <div style={{
           position: "absolute", inset: 0, pointerEvents: "none",
-          backgroundImage: `linear-gradient(rgba(204,34,0,0.035) 1px, transparent 1px),
-                            linear-gradient(90deg, rgba(204,34,0,0.035) 1px, transparent 1px)`,
+          backgroundImage: `linear-gradient(rgba(204,34,0,0.04) 1px, transparent 1px),
+                            linear-gradient(90deg, rgba(204,34,0,0.04) 1px, transparent 1px)`,
           backgroundSize: "90px 90px",
         }} />
         {/* Red ambient glow */}
         <div style={{
           position: "absolute", top: "35%", left: "50%", transform: "translate(-50%, -50%)",
           width: "70vw", height: "70vw", maxWidth: 900, maxHeight: 900, pointerEvents: "none",
-          background: "radial-gradient(circle, rgba(204,34,0,0.11) 0%, transparent 65%)",
+          background: "radial-gradient(circle, rgba(204,34,0,0.13) 0%, transparent 65%)",
         }} />
 
         <div style={{ position: "relative", maxWidth: 880 }}>
@@ -348,37 +351,46 @@ export default function ToltAILanding() {
       ══════════════════════════════════════════════════════ */}
       <section id="whatwedo" style={{
         minHeight: "100vh", display: "flex", alignItems: "center",
-        padding: "120px clamp(24px, 8vw, 140px)",
-        background: NAVY, position: "relative", overflow: "hidden",
+        padding: "0", background: NAVY, position: "relative", overflow: "hidden",
       }}>
-        <div style={{
-          position: "absolute", right: 0, top: 0, bottom: 0, width: "40%", pointerEvents: "none",
-          background: "linear-gradient(to left, rgba(204,34,0,0.04), transparent)",
-        }} />
-        <div className="two-col" style={{ display: "flex", gap: "8vw", alignItems: "center", width: "100%" }}>
-          <Reveal from="left" style={{ flex: "1 1 300px" }}>
-            <p style={{ fontSize: 10, letterSpacing: "0.24em", color: RED, textTransform: "uppercase", marginBottom: 24, fontWeight: 500 }}>
-              What We Do
-            </p>
-            <h2 style={{
-              fontFamily: "'Heebo', sans-serif",
-              fontSize: "clamp(40px, 6vw, 80px)",
-              fontWeight: 100, lineHeight: 1.07, textTransform: "uppercase",
-            }}>
-              Intelligence<br />built for<br />the real world.
-            </h2>
+        <div className="two-col" style={{ display: "flex", alignItems: "stretch", width: "100%", minHeight: "100vh" }}>
+          {/* Photo column */}
+          <Reveal from="left" style={{ flex: "1 1 45%", position: "relative", minHeight: 400 }}>
+            <div style={{
+              position: "absolute", inset: 0,
+              backgroundImage: `url('https://images.unsplash.com/photo-1552664730-d307ca884978?auto=format&fit=crop&w=900&q=80')`,
+              backgroundSize: "cover", backgroundPosition: "center",
+            }} />
+            <div style={{ position: "absolute", inset: 0, background: "linear-gradient(to right, rgba(17,24,32,0.3), rgba(17,24,32,0.6))" }} />
           </Reveal>
-          <Reveal from="right" delay={160} style={{ flex: "1 1 300px", borderLeft: `2px solid ${RED}`, paddingLeft: 44 }}>
-            <p style={{ fontSize: 17, fontWeight: 300, color: "rgba(255,255,255,0.6)", lineHeight: 1.9, marginBottom: 28 }}>
-              We design and deploy agentic AI systems that operate reliably inside complex,
-              regulated environments. Not demos — production systems that replace manual
-              processes, reduce risk, and deliver measurable ROI from day one.
-            </p>
-            <p style={{ fontSize: 17, fontWeight: 300, color: "rgba(255,255,255,0.6)", lineHeight: 1.9 }}>
-              From strategy through engineering to enablement, Tölt-AI is the partner
-              that stays with you for the full journey.
-            </p>
-          </Reveal>
+          {/* Text column */}
+          <div style={{ flex: "1 1 55%", display: "flex", alignItems: "center", padding: "120px clamp(32px, 6vw, 100px)" }}>
+            <div>
+              <Reveal from="right">
+                <p style={{ fontSize: 10, letterSpacing: "0.24em", color: RED, textTransform: "uppercase", marginBottom: 24, fontWeight: 500 }}>
+                  What We Do
+                </p>
+                <h2 style={{
+                  fontFamily: "'Heebo', sans-serif",
+                  fontSize: "clamp(36px, 5vw, 72px)",
+                  fontWeight: 100, lineHeight: 1.07, textTransform: "uppercase", marginBottom: 40,
+                }}>
+                  Intelligence<br />built for<br />the real world.
+                </h2>
+              </Reveal>
+              <Reveal from="right" delay={160} style={{ borderLeft: `2px solid ${RED}`, paddingLeft: 32 }}>
+                <p style={{ fontSize: 16, fontWeight: 300, color: "rgba(255,255,255,0.6)", lineHeight: 1.9, marginBottom: 24 }}>
+                  We design and deploy agentic AI systems that operate reliably inside complex,
+                  regulated environments. Not demos — production systems that replace manual
+                  processes, reduce risk, and deliver measurable ROI from day one.
+                </p>
+                <p style={{ fontSize: 16, fontWeight: 300, color: "rgba(255,255,255,0.6)", lineHeight: 1.9 }}>
+                  From strategy through engineering to enablement, Tölt-AI is the partner
+                  that stays with you for the full journey.
+                </p>
+              </Reveal>
+            </div>
+          </div>
         </div>
       </section>
 
@@ -465,11 +477,14 @@ export default function ToltAILanding() {
       <section id="why" style={{
         minHeight: "100vh", display: "flex", flexDirection: "column", justifyContent: "center",
         padding: "120px clamp(24px, 8vw, 140px)",
-        background: NAVY, position: "relative", overflow: "hidden",
+        position: "relative", overflow: "hidden",
+        backgroundImage: `url('https://images.unsplash.com/photo-1504639725590-34d0984388bd?auto=format&fit=crop&w=1920&q=80')`,
+        backgroundSize: "cover", backgroundPosition: "center",
       }}>
+        <div style={{ position: "absolute", inset: 0, background: "rgba(13,17,23,0.88)", pointerEvents: "none" }} />
         <div style={{
           position: "absolute", left: 0, bottom: 0, width: "50%", height: "50%", pointerEvents: "none",
-          background: "radial-gradient(circle at bottom left, rgba(204,34,0,0.07), transparent 60%)",
+          background: "radial-gradient(circle at bottom left, rgba(204,34,0,0.1), transparent 60%)",
         }} />
         <Reveal style={{ textAlign: "center" }}>
           <p style={{ fontSize: 10, letterSpacing: "0.24em", color: RED, textTransform: "uppercase", marginBottom: 20, fontWeight: 500 }}>
@@ -498,10 +513,16 @@ export default function ToltAILanding() {
       {/* ══════════════════════════════════════════════════════
           TEAM / EXPERTISE
       ══════════════════════════════════════════════════════ */}
-      <section id="team" style={{
-        padding: "120px clamp(24px, 8vw, 140px)",
-        background: NAVY, color: WHITE,
-      }}>
+      <section id="team" style={{ background: NAVY, color: WHITE }}>
+        {/* Photo banner */}
+        <div style={{
+          height: "40vh", minHeight: 260, position: "relative", overflow: "hidden",
+          backgroundImage: `url('https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&w=1920&q=80')`,
+          backgroundSize: "cover", backgroundPosition: "center 40%",
+        }}>
+          <div style={{ position: "absolute", inset: 0, background: "linear-gradient(to bottom, rgba(17,24,32,0.4) 0%, rgba(17,24,32,0.95) 100%)" }} />
+        </div>
+        <div style={{ padding: "80px clamp(24px, 8vw, 140px) 120px" }}>
         <Reveal style={{ textAlign: "center" }}>
           <p style={{ fontSize: 10, letterSpacing: "0.24em", color: RED, textTransform: "uppercase", marginBottom: 20, fontWeight: 500 }}>
             Who We Are
@@ -530,6 +551,7 @@ export default function ToltAILanding() {
             </Reveal>
           ))}
         </div>
+        </div>
       </section>
 
       {/* ══════════════════════════════════════════════════════
@@ -539,11 +561,14 @@ export default function ToltAILanding() {
         minHeight: "100vh", display: "flex", flexDirection: "column", justifyContent: "center",
         alignItems: "center", textAlign: "center",
         padding: "120px clamp(24px, 8vw, 140px)",
-        background: NAVY, position: "relative", overflow: "hidden",
+        position: "relative", overflow: "hidden",
+        backgroundImage: `url('https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=1920&q=80')`,
+        backgroundSize: "cover", backgroundPosition: "center",
       }}>
+        <div style={{ position: "absolute", inset: 0, background: "rgba(13,17,23,0.90)", pointerEvents: "none" }} />
         <div style={{
           position: "absolute", inset: 0, pointerEvents: "none",
-          background: "radial-gradient(ellipse at 50% 50%, rgba(204,34,0,0.06), transparent 60%)",
+          background: "radial-gradient(ellipse at 50% 50%, rgba(204,34,0,0.08), transparent 60%)",
         }} />
         <Reveal style={{ width: "100%", maxWidth: 640 }}>
           <p style={{ fontSize: 10, letterSpacing: "0.24em", color: RED, textTransform: "uppercase", marginBottom: 20, fontWeight: 500 }}>
