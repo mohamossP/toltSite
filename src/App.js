@@ -299,7 +299,7 @@ export default function ToltAILanding() {
           50%       { box-shadow: 0 4px 36px rgba(204,34,0,0.75); }
         }
         .float-btn {
-          position: fixed; bottom: 32px; left: 50%; transform: translateX(-50%);
+          position: fixed; bottom: 32px; left: clamp(24px, 6vw, 100px);
           z-index: 150; white-space: nowrap;
           animation: floatPulse 2.5s ease-in-out infinite;
         }
@@ -356,7 +356,7 @@ export default function ToltAILanding() {
         backgroundSize: "cover", backgroundPosition: "center",
       }}>
         {/* Dark overlays */}
-        <div style={{ position: "absolute", inset: 0, background: "linear-gradient(155deg, rgba(13,17,23,0.92) 0%, rgba(26,8,0,0.85) 50%, rgba(13,17,23,0.92) 100%)", pointerEvents: "none" }} />
+        <div style={{ position: "absolute", inset: 0, background: "linear-gradient(155deg, rgba(13,17,23,0.72) 0%, rgba(26,8,0,0.65) 50%, rgba(13,17,23,0.72) 100%)", pointerEvents: "none" }} />
         {/* Subtle grid */}
         <div style={{
           position: "absolute", inset: 0, pointerEvents: "none",
@@ -431,7 +431,7 @@ export default function ToltAILanding() {
           <Reveal from="left" style={{ flex: "1 1 45%", position: "relative", minHeight: 400 }}>
             <div style={{
               position: "absolute", inset: 0,
-              backgroundImage: `url('https://images.unsplash.com/photo-1552664730-d307ca884978?auto=format&fit=crop&w=900&q=80')`,
+              backgroundImage: `url('https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=900&q=80')`,
               backgroundSize: "cover", backgroundPosition: "center",
             }} />
             <div style={{ position: "absolute", inset: 0, background: "linear-gradient(to right, rgba(17,24,32,0.3), rgba(17,24,32,0.6))" }} />
@@ -575,8 +575,8 @@ export default function ToltAILanding() {
           {differentials.map((d, i) => (
             <Reveal key={d.title} delay={i * 80}>
               <div className="diff-card">
-                <h3 style={{ fontSize: 19, fontWeight: 500, marginBottom: 14, color: WHITE }}>{d.title}</h3>
-                <p style={{ fontSize: 14, fontWeight: 300, color: "rgba(255,255,255,0.85)", lineHeight: 1.88 }}>{d.desc}</p>
+                <h3 style={{ fontSize: 19, fontWeight: 700, marginBottom: 14, color: WHITE }}>{d.title}</h3>
+                <p style={{ fontSize: 14, fontWeight: 400, color: WHITE, lineHeight: 1.88 }}>{d.desc}</p>
               </div>
             </Reveal>
           ))}
