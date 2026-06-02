@@ -481,7 +481,7 @@ export default function ToltAILanding() {
         backgroundImage: `url('https://images.unsplash.com/photo-1504639725590-34d0984388bd?auto=format&fit=crop&w=1920&q=80')`,
         backgroundSize: "cover", backgroundPosition: "center",
       }}>
-        <div style={{ position: "absolute", inset: 0, background: "rgba(13,17,23,0.88)", pointerEvents: "none" }} />
+        <div style={{ position: "absolute", inset: 0, background: "rgba(13,17,23,0.72)", pointerEvents: "none" }} />
         <div style={{
           position: "absolute", left: 0, bottom: 0, width: "50%", height: "50%", pointerEvents: "none",
           background: "radial-gradient(circle at bottom left, rgba(204,34,0,0.1), transparent 60%)",
@@ -502,8 +502,8 @@ export default function ToltAILanding() {
           {differentials.map((d, i) => (
             <Reveal key={d.title} delay={i * 80}>
               <div className="diff-card">
-                <h3 style={{ fontSize: 19, fontWeight: 400, marginBottom: 14, color: WHITE }}>{d.title}</h3>
-                <p style={{ fontSize: 14, fontWeight: 300, color: "rgba(255,255,255,0.5)", lineHeight: 1.88 }}>{d.desc}</p>
+                <h3 style={{ fontSize: 19, fontWeight: 500, marginBottom: 14, color: WHITE }}>{d.title}</h3>
+                <p style={{ fontSize: 14, fontWeight: 300, color: "rgba(255,255,255,0.85)", lineHeight: 1.88 }}>{d.desc}</p>
               </div>
             </Reveal>
           ))}
@@ -565,7 +565,7 @@ export default function ToltAILanding() {
         backgroundImage: `url('https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=1920&q=80')`,
         backgroundSize: "cover", backgroundPosition: "center",
       }}>
-        <div style={{ position: "absolute", inset: 0, background: "rgba(13,17,23,0.90)", pointerEvents: "none" }} />
+        <div style={{ position: "absolute", inset: 0, background: "rgba(13,17,23,0.75)", pointerEvents: "none" }} />
         <div style={{
           position: "absolute", inset: 0, pointerEvents: "none",
           background: "radial-gradient(ellipse at 50% 50%, rgba(204,34,0,0.08), transparent 60%)",
@@ -581,7 +581,7 @@ export default function ToltAILanding() {
           }}>
             Ready to automate<br />with confidence?
           </h2>
-          <p style={{ fontSize: 12, fontWeight: 300, color: "rgba(255,255,255,0.35)", marginBottom: 56, lineHeight: 1.8 }}>
+          <p style={{ fontSize: 12, fontWeight: 300, color: "rgba(255,255,255,0.8)", marginBottom: 56, lineHeight: 1.8 }}>
             Tell us about your organisation and we'll tailor a solution for your sector.
           </p>
         </Reveal>
