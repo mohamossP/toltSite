@@ -229,6 +229,9 @@ export default function ToltAILanding() {
       <button className="float-btn btn-red" onClick={() => setFormOpen(true)}>
         Ready to Automate →
       </button>
+      <button className="float-btn-right btn-red" onClick={() => scrollTo("solutions")}>
+        ← See Our Solutions
+      </button>
 
       {/* ── Global styles ── */}
       <style>{`
@@ -302,6 +305,11 @@ export default function ToltAILanding() {
           position: fixed; bottom: 32px; left: clamp(24px, 6vw, 100px);
           z-index: 150; white-space: nowrap;
           animation: floatPulse 2.5s ease-in-out infinite;
+        }
+        .float-btn-right {
+          position: fixed; bottom: 32px; right: clamp(24px, 6vw, 100px);
+          z-index: 150; white-space: nowrap;
+          animation: floatPulse 2.5s 1.25s ease-in-out infinite;
         }
         @keyframes scrollBounce {
           0%, 100% { transform: translateX(-50%) translateY(0); }
@@ -404,13 +412,6 @@ export default function ToltAILanding() {
             Tölt-AI delivers reliable agentic AI solutions that transform business
             processes in healthcare, government, and education — securely, on your terms.
           </p>
-          <div style={{
-            display: "flex", gap: 16, flexWrap: "wrap", justifyContent: "center",
-            animation: "fadeUp 0.9s 0.32s ease both",
-          }}>
-            <button className="btn-red" onClick={() => scrollTo("contact")}>Book a Discovery Call</button>
-            <button className="btn-outline" onClick={() => scrollTo("solutions")}>See Our Solutions</button>
-          </div>
         </div>
 
         <div style={{
