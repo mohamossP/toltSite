@@ -627,8 +627,8 @@ export default function ToltAILanding() {
           {differentials.map((d, i) => (
             <Reveal key={d.title} delay={i * 80}>
               <div className="diff-card">
-                <h3 style={{ fontSize: 19, fontWeight: 700, marginBottom: 14, color: WHITE }}>{d.title}</h3>
-                <p style={{ fontSize: 14, fontWeight: 400, color: WHITE, lineHeight: 1.88 }}>{d.desc}</p>
+                <h3 style={{ fontSize: 19, fontWeight: 700, marginBottom: 14, color: "#FFF9C4" }}>{d.title}</h3>
+                <p style={{ fontSize: 14, fontWeight: 400, color: "#FFF9C4", lineHeight: 1.88 }}>{d.desc}</p>
               </div>
             </Reveal>
           ))}
