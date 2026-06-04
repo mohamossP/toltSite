@@ -99,8 +99,58 @@ const ContactModal = ({ open, onClose, name, setName, email, setEmail, message, 
   );
 };
 
-// ─── Scroll indicator ──────────────────────────────────────────────────────
+// ─── Section nav arrows ────────────────────────────────────────────────────
 const SECTIONS = ["hero", "whatwedo", "sectors", "solutions", "why", "team", "contact"];
+const SECTION_LABELS = ["Home", "What We Do", "Sectors", "Solutions", "Why Tölt-AI", "Team", "Contact"];
+
+const SectionNav = ({ active }) => {
+  const go = i => document.getElementById(SECTIONS[i])?.scrollIntoView({ behavior: "smooth" });
+  const hasPrev = active > 0;
+  const hasNext = active < SECTIONS.length - 1;
+
+  const ArrowBtn = ({ dir, enabled, onClick }) => (
+    <button onClick={enabled ? onClick : undefined} style={{
+      background: "none", border: "none", cursor: enabled ? "pointer" : "default",
+      padding: "8px", display: "flex", alignItems: "center", justifyContent: "center",
+      opacity: enabled ? 1 : 0.15, transition: "all 0.3s ease",
+      transform: "none",
+    }}
+      onMouseEnter={e => { if (enabled) e.currentTarget.style.transform = "scale(1.2)"; }}
+      onMouseLeave={e => { e.currentTarget.style.transform = "none"; }}
+    >
+      <svg width="36" height="36" viewBox="0 0 36 36" fill="none">
+        <polyline
+          points={dir === "up" ? "6,24 18,12 30,24" : "6,12 18,24 30,12"}
+          stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"
+        />
+      </svg>
+    </button>
+  );
+
+  return (
+    <div style={{
+      position: "fixed", right: 28, top: "50%", transform: "translateY(-50%)",
+      zIndex: 99, display: "flex", flexDirection: "column", alignItems: "center", gap: 6,
+    }}>
+      <ArrowBtn dir="up" enabled={hasPrev} onClick={() => go(active - 1)} />
+      <div style={{
+        display: "flex", flexDirection: "column", alignItems: "center", gap: 4,
+        padding: "10px 0",
+      }}>
+        <div style={{ width: 1, height: 24, background: "rgba(255,255,255,0.2)" }} />
+        <span style={{
+          fontSize: 9, letterSpacing: "0.2em", color: "rgba(255,255,255,0.5)",
+          textTransform: "uppercase", writingMode: "vertical-rl",
+          transform: "rotate(180deg)", lineHeight: 1, padding: "8px 0",
+        }}>
+          {SECTION_LABELS[active]}
+        </span>
+        <div style={{ width: 1, height: 24, background: "rgba(255,255,255,0.2)" }} />
+      </div>
+      <ArrowBtn dir="down" enabled={hasNext} onClick={() => go(active + 1)} />
+    </div>
+  );
+};
 
 const ScrollIndicator = ({ active }) => (
   <div style={{
@@ -217,6 +267,7 @@ export default function ToltAILanding() {
     <div style={{ background: DARK, color: WHITE, fontFamily: "'Heebo', sans-serif", overflowX: "hidden" }}>
 
       <ScrollIndicator active={activeSection} />
+      <SectionNav active={activeSection} />
 
       <ContactModal
         open={formOpen} onClose={() => setFormOpen(false)}
