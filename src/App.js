@@ -332,23 +332,19 @@ export default function ToltAILanding() {
       <nav style={{
         position: "fixed", top: 0, left: 0, right: 0, zIndex: 100, height: 80,
         padding: "0 clamp(24px, 6vw, 100px)",
-        display: "grid", gridTemplateColumns: "1fr auto 1fr", alignItems: "center",
+        display: "flex", alignItems: "center", justifyContent: "space-between",
         background: scrolled ? "rgba(13,17,23,0.96)" : "transparent",
         backdropFilter: scrolled ? "blur(18px)" : "none",
         borderBottom: scrolled ? "1px solid rgba(255,255,255,0.05)" : "1px solid transparent",
         transition: "all 0.4s ease",
       }}>
-        {/* Left spacer */}
-        <div />
-        {/* Centered logo */}
-        <a href="/" style={{ display: "flex", alignItems: "center", gap: 12, justifyContent: "center" }}>
+        <a href="/" style={{ display: "flex", alignItems: "center", gap: 12 }}>
           <ToltLogo size={36} />
           <span style={{ fontSize: 14, fontWeight: 300, letterSpacing: "0.18em", color: WHITE }}>
             Tölt-AI
           </span>
         </a>
-        {/* Nav links right */}
-        <div className="hide-sm" style={{ display: "flex", gap: 44, alignItems: "center", justifyContent: "flex-end" }}>
+        <div className="hide-sm" style={{ display: "flex", gap: 44, alignItems: "center" }}>
           {[["Solutions", "solutions"], ["Sectors", "sectors"], ["Team", "team"], ["Contact", "contact"]].map(([label, id]) => (
             <button key={id} className="nav-link" onClick={() => scrollTo(id)}>{label}</button>
           ))}
@@ -384,7 +380,7 @@ export default function ToltAILanding() {
         }} />
 
         <div style={{ position: "relative", maxWidth: 880 }}>
-          <div style={{ marginBottom: 44, animation: "fadeUp 0.6s ease both" }}>
+          <div style={{ marginBottom: 44, animation: "fadeUp 0.6s ease both", display: "flex", justifyContent: "center" }}>
             <ToltLogo size={68} />
           </div>
           <p style={{
