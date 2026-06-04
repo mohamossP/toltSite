@@ -625,12 +625,10 @@ export default function ToltAILanding() {
         </div>
         <div className="diff-grid" style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "4px 60px" }}>
           {differentials.map((d, i) => (
-            <Reveal key={d.title} delay={i * 80}>
-              <div className="diff-card">
-                <h3 style={{ fontSize: 19, fontWeight: 700, marginBottom: 14, color: "#FFF9C4" }}>{d.title}</h3>
-                <p style={{ fontSize: 14, fontWeight: 400, color: "#FFF9C4", lineHeight: 1.88 }}>{d.desc}</p>
-              </div>
-            </Reveal>
+            <div key={d.title} className="diff-card" style={{ animation: `fadeUp 0.7s ${i * 120}ms ease both` }}>
+              <h3 style={{ fontSize: 19, fontWeight: 700, marginBottom: 14, color: "#FFF9C4" }}>{d.title}</h3>
+              <p style={{ fontSize: 14, fontWeight: 400, color: "#FFF9C4", lineHeight: 1.88 }}>{d.desc}</p>
+            </div>
           ))}
         </div>
       </section>
